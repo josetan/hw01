@@ -53,5 +53,5 @@ bound = mutate(bound, ygrid = x1 + x1*x1 + x2 +x2*x2, pgrid = exp(ygrid)/(1+exp(
 
 ggplot(bound, aes(x = x1, y = x2)) + geom_contour(aes(z = pgrid, group = grid_success), bins = 1) +
   geom_point(data = y_new_d, aes(color = success)) +
-  scale_color_brewer(type = "qual", palette = 6) +
+  scale_color_brewer(type = "qual", palette = 3) +
   labs(title = "Bayes decision boundary")
