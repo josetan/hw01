@@ -1,10 +1,14 @@
 ---
 title: "HW1 modelling"
 author: "Josephine Tan"
-output: 
+output:
   html_document:
     keep_md: yes
 ---
+```{r}
+knitr::opts_chunk$set(fig.path="*_files/figure-html/")
+````
+
 ## Bias variance decomposition
 ```{r Bias variance decomposition}
 library(ggplot2)
@@ -45,3 +49,7 @@ ggplot(bound, aes(x = x1, y = x2)) + geom_contour(aes(z = pgrid, group = grid_su
   geom_point(data = y_new_d, aes(color = success)) +
   scale_color_brewer(type = "qual", palette = 6) +
   labs(title = "Bayes decision boundary")
+````
+
+````{r chunk}
+knitr::opts_chunk$get('fig.path')

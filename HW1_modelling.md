@@ -1,10 +1,15 @@
 ---
 title: "HW1 modelling"
 author: "Josephine Tan"
-output: 
+output:
   html_document:
     keep_md: yes
 ---
+
+```r
+knitr::opts_chunk$set(fig.path="*_files/figure-html/")
+```
+
 ## Bias variance decomposition
 
 ```r
@@ -19,7 +24,7 @@ line_width = 0.5
 ggplot(data = data.frame(x = 0), mapping = aes(x = x)) + stat_function(fun = test_error, size = line_width, aes(color = "Test Error")) + stat_function(fun = sq_bias, size = line_width, aes(color = "Squared Bias")) + stat_function(fun = var, size = line_width, aes(color = "Variance")) +  stat_function(fun = train_error, size = line_width, aes(color = "Training Error")) +  stat_function(fun = bayes_error, size = line_width, aes(color = "Bayes Error")) + xlim(0, 8) + ylim(0, 800) + labs(title = "Typical Bias-Variance Decomposition", x="Flexibility(ascending)", y = "Error rate")
 ```
 
-![](HW1_modelling_files/figure-html/Bias variance decomposition-1.png)<!-- -->
+![](*_files/figure-html/Bias variance decomposition-1.png)<!-- -->
 Generally as flexibility increases, bias decreases and variance increases. With higher flexibility, the model fits the observed data more closely, and the amount by which f would change if we estimated it using a different training set would increase (variance), but the error that is introduced by approximating real life problems using a simplified model decreases (bias). For training error, as flexibility increases, the model fits the training data better and training error decreases as a result. For test error, as flexibility increases, it has a u-shape, as it declines initially but increase again as the model has now overfit the data. For bayes or irreducible error, the error remains constant and whether a method is flexible or inflexible has no effect on it.
 
 ## Bayes classifier
@@ -71,4 +76,13 @@ ggplot(bound, aes(x = x1, y = x2)) + geom_contour(aes(z = pgrid, group = grid_su
   labs(title = "Bayes decision boundary")
 ```
 
-![](HW1_modelling_files/figure-html/bayes classifier-1.png)<!-- -->
+![](*_files/figure-html/bayes classifier-1.png)<!-- -->
+
+
+```r
+knitr::opts_chunk$get('fig.path')
+```
+
+```
+## [1] "*_files/figure-html/"
+```
