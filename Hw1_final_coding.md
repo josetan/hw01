@@ -1,5 +1,5 @@
 ---
-title: "HW1 pdf"
+title: "HW1 coding"
 author: "Josephine Tan"
 output:
   html_document:
@@ -12,7 +12,8 @@ geometry: margin=1in
 ---
 
 ## Bias variance decomposition
-```{r Bias variance decomposition}
+
+```r
 library(ggplot2)
 sq_bias = function(x) (2 * x - 20)^2 + 60
 var = function(x)  exp(x / 1.8) * 4
@@ -32,7 +33,9 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
        y = "Error rate") +
   theme(legend.position = "bottom", legend.direction = "horizontal", 
         legend.title=element_blank())
-````
+```
+
+![](Hw1_final_coding_files/figure-html/Bias variance decomposition-1.png)<!-- -->
 
 
 
@@ -40,7 +43,8 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
 Generally as flexibility increases, bias decreases and variance increases. With higher flexibility, the model fits the observed data more closely, and the amount by which f would change if we estimated it using a different training set would increase (variance), but the error that is introduced by approximating real life problems using a simplified model decreases (bias). For training error, as flexibility increases, the model fits the training data better and training error decreases as a result. For test error, as flexibility increases, it has a u-shape, as it declines initially but increase again as the model has now overfit the data. For bayes or irreducible error, the error remains constant and whether a method is flexible or inflexible has no effect on it.
 
 ## Bayes classifier
-```{r bayes classifier}
+
+```r
 #creating the simulated dataset
 set.seed(11) 
 n = 200
@@ -57,6 +61,26 @@ y_new_d$success[y_new_d$success==FALSE] = "NO"
 
 #creating the grid/data for the plot
 library(tidyverse)
+```
+
+```
+## ── Attaching packages ──────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──
+```
+
+```
+## ✔ tibble  1.4.2     ✔ purrr   0.2.5
+## ✔ tidyr   0.8.2     ✔ dplyr   0.7.8
+## ✔ readr   1.1.1     ✔ stringr 1.3.1
+## ✔ tibble  1.4.2     ✔ forcats 0.3.0
+```
+
+```
+## ── Conflicts ─────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+```
+
+```r
 bound = expand.grid(x1 = seq(-1, 1, by = 0.05), x2 = seq(-1, 1, by = 0.05))
 bound = mutate(bound, ygrid = x1 + x1*x1 + x2 +x2*x2, 
                pgrid = exp(ygrid)/(1+exp(ygrid)), 
@@ -68,4 +92,6 @@ ggplot(bound, aes(x = x1, y = x2)) + geom_contour(aes(z = pgrid, group = grid_su
   geom_point(data = y_new_d, aes(color = success)) +
   scale_color_brewer(type = "qual", palette = 6) +
   labs(title = "Bayes decision boundary")
-````
+```
+
+![](Hw1_final_coding_files/figure-html/bayes classifier-1.png)<!-- -->
